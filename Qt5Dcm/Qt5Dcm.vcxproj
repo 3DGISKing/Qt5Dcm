@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B12702AD-ABFB-343A-A199-8E24837244A3}</ProjectGuid>
+    <Keyword>Qt4VSv1.0</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup Condition="'$(QtMsBuild)'=='' or !Exists('$(QtMsBuild)\qt.targets')">
+    <QtMsBuild>$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT5DCM_LIB;dcmcore_EXPORTS;dcmimage_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Xmld.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <QtMoc>
+      <Define>UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT5DCM_LIB;dcmcore_EXPORTS;dcmimage_EXPORTS;%(PreprocessorDefinitions)</Define>
+      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;.\include;%(AdditionalIncludeDirectories)</IncludePath>
+    </QtMoc>
+    <QtRcc>
+      <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
+      <OutputFile>.\GeneratedFiles\qrc_%(Filename).cpp</OutputFile>
+    </QtRcc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT5DCM_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat />
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>qtmain.lib;Qt5Core.lib;Qt5Gui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <QtMoc>
+      <Define>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT5DCM_LIB;%(PreprocessorDefinitions)</Define>
+      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;%(AdditionalIncludeDirectories)</IncludePath>
+    </QtMoc>
+    <QtRcc>
+      <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
+      <OutputFile>.\GeneratedFiles\qrc_%(Filename).cpp</OutputFile>
+    </QtRcc>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="cpp\DcmCharSet.cpp" />
+    <ClCompile Include="cpp\DcmConverter.cpp" />
+    <ClCompile Include="cpp\DcmDataset.cpp" />
+    <ClCompile Include="cpp\DcmDictionary.cpp" />
+    <ClCompile Include="cpp\DcmFile.cpp" />
+    <ClCompile Include="cpp\DcmGlobal.cpp" />
+    <ClCompile Include="cpp\DcmImage.cpp" />
+    <ClCompile Include="cpp\DcmImageTransferFunction.cpp" />
+    <ClCompile Include="cpp\DcmModule.cpp" />
+    <ClCompile Include="cpp\DcmMonochromeImage.cpp" />
+    <ClCompile Include="cpp\DcmPDUItem.cpp" />
+    <ClCompile Include="cpp\DcmPhotometricInterpretation.cpp" />
+    <ClCompile Include="cpp\DcmReader.cpp" />
+    <ClCompile Include="cpp\DcmStream.cpp" />
+    <ClCompile Include="cpp\DcmTag.cpp" />
+    <ClCompile Include="cpp\DcmTagAE.cpp" />
+    <ClCompile Include="cpp\DcmTagAS.cpp" />
+    <ClCompile Include="cpp\DcmTagAT.cpp" />
+    <ClCompile Include="cpp\DcmTagBinary.cpp" />
+    <ClCompile Include="cpp\DcmTagCS.cpp" />
+    <ClCompile Include="cpp\DcmTagDA.cpp" />
+    <ClCompile Include="cpp\DcmTagDescription.cpp" />
+    <ClCompile Include="cpp\DcmTagDS.cpp" />
+    <ClCompile Include="cpp\DcmTagDT.cpp" />
+    <ClCompile Include="cpp\DcmTagFD.cpp" />
+    <ClCompile Include="cpp\DcmTagFL.cpp" />
+    <ClCompile Include="cpp\DcmTagGroup.cpp" />
+    <ClCompile Include="cpp\DcmTagIS.cpp" />
+    <ClCompile Include="cpp\DcmTagItem.cpp" />
+    <ClCompile Include="cpp\DcmTagKey.cpp" />
+    <ClCompile Include="cpp\DcmTagList.cpp" />
+    <ClCompile Include="cpp\DcmTagLO.cpp" />
+    <ClCompile Include="cpp\DcmTagLT.cpp" />
+    <ClCompile Include="cpp\DcmTagPixelData.cpp" />
+    <ClCompile Include="cpp\DcmTagPixelDataItem.cpp" />
+    <ClCompile Include="cpp\DcmTagPN.cpp" />
+    <ClCompile Include="cpp\DcmTagSH.cpp" />
+    <ClCompile Include="cpp\DcmTagSL.cpp" />
+    <ClCompile Include="cpp\DcmTagSQ.cpp" />
+    <ClCompile Include="cpp\DcmTagSS.cpp" />
+    <ClCompile Include="cpp\DcmTagST.cpp" />
+    <ClCompile Include="cpp\DcmTagString.cpp" />
+    <ClCompile Include="cpp\DcmTagTM.cpp" />
+    <ClCompile Include="cpp\DcmTagUI.cpp" />
+    <ClCompile Include="cpp\DcmTagUL.cpp" />
+    <ClCompile Include="cpp\DcmTagUS.cpp" />
+    <ClCompile Include="cpp\DcmTagUT.cpp" />
+    <ClCompile Include="cpp\DcmTransferSyntax.cpp" />
+    <ClCompile Include="cpp\DcmVr.cpp" />
+    <ClCompile Include="cpp\DcmWriter.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\DcmCharSet.h" />
+    <ClInclude Include="include\DcmConverter.h" />
+    <ClInclude Include="include\DcmCoreApi.h" />
+    <ClInclude Include="include\DcmDataset.h" />
+    <ClInclude Include="include\DcmDictionary.h" />
+    <ClInclude Include="include\DcmFile.h" />
+    <ClInclude Include="include\DcmGlobal.h" />
+    <ClInclude Include="include\DcmImage.h" />
+    <ClInclude Include="include\DcmImageApi.h" />
+    <ClInclude Include="include\DcmImageTransferFunction.h" />
+    <ClInclude Include="include\DcmModule.h" />
+    <ClInclude Include="include\DcmMonochromeImage.h" />
+    <ClInclude Include="include\DcmPDUItem.h" />
+    <ClInclude Include="include\DcmPhotometricInterpretation.h" />
+    <ClInclude Include="include\DcmReader.h" />
+    <ClInclude Include="include\DcmStream.h" />
+    <ClInclude Include="include\DcmTag.h" />
+    <ClInclude Include="include\DcmTagAE.h" />
+    <ClInclude Include="include\DcmTagAS.h" />
+    <ClInclude Include="include\DcmTagAT.h" />
+    <ClInclude Include="include\DcmTagBinary.h" />
+    <ClInclude Include="include\DcmTagCS.h" />
+    <ClInclude Include="include\DcmTagDA.h" />
+    <ClInclude Include="include\DcmTagDescription.h" />
+    <ClInclude Include="include\DcmTagDS.h" />
+    <ClInclude Include="include\DcmTagDT.h" />
+    <ClInclude Include="include\DcmTagFD.h" />
+    <ClInclude Include="include\DcmTagFL.h" />
+    <ClInclude Include="include\DcmTagGroup.h" />
+    <ClInclude Include="include\DcmTagIS.h" />
+    <ClInclude Include="include\DcmTagItem.h" />
+    <ClInclude Include="include\DcmTagKey.h" />
+    <ClInclude Include="include\DcmTagList.h" />
+    <ClInclude Include="include\DcmTagLO.h" />
+    <ClInclude Include="include\DcmTagLT.h" />
+    <ClInclude Include="include\DcmTagPixelData.h" />
+    <ClInclude Include="include\DcmTagPixelDataItem.h" />
+    <ClInclude Include="include\DcmTagPN.h" />
+    <ClInclude Include="include\DcmTagSH.h" />
+    <ClInclude Include="include\DcmTagSL.h" />
+    <ClInclude Include="include\DcmTagSQ.h" />
+    <ClInclude Include="include\DcmTagSS.h" />
+    <ClInclude Include="include\DcmTagST.h" />
+    <ClInclude Include="include\DcmTagString.h" />
+    <ClInclude Include="include\DcmTagTM.h" />
+    <ClInclude Include="include\DcmTagUI.h" />
+    <ClInclude Include="include\DcmTagUL.h" />
+    <ClInclude Include="include\DcmTagUS.h" />
+    <ClInclude Include="include\DcmTagUT.h" />
+    <ClInclude Include="include\DcmTransferSyntax.h" />
+    <ClInclude Include="include\DcmTypes.h" />
+    <ClInclude Include="include\DcmVr.h" />
+    <ClInclude Include="include\DcmWriter.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="Resources\dcmcore.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Resources\dict\dicom.xml">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </Xml>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_Win32="Qt5.6.0. msvc2015" MocOptions="" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
